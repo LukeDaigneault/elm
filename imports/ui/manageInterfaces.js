@@ -19,7 +19,7 @@ Template.manageInterfaces.events({
     // Get value from form element
     const target = event.target;
     const interfaceName = target.interfaceName.value;
-    const fDNumber = target.fDNumber.value;
+    const fID = target.fID.value;
     const email = target.email.checked;
     const facebook = target.facebook.checked;
     const sms = target.sms.checked;
@@ -27,7 +27,7 @@ Template.manageInterfaces.events({
     // Insert a task into the collection
     Interfaces.insert({
       interfaceName: interfaceName,
-      fDNumber: fDNumber,
+      fID: fID,
       email: email,
       facebook: facebook,
       sms: sms,
@@ -36,7 +36,7 @@ Template.manageInterfaces.events({
 
     // Clear form
     target.interfaceName.value = '';
-    target.fDNumber.value = '';
+    target.fID.value = '';
     target.email.checked = false;
     target.facebook.checked = false;
     target.sms.checked = false;
