@@ -36,9 +36,9 @@ Template.interface.events({
     // Clear form
     target.interfaceName.value = '';
     target.fDNumber.value = '';
-    target.email.value = '';
-    target.facebook.value = '';
-    target.sms.value = '';
+    target.email.checked = false;
+    target.facebook.checked = false;
+    target.sms.checked = false;
   },
   'click .delete-interface'() {
     Interfaces.remove(this._id);
