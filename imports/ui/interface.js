@@ -19,9 +19,9 @@ Template.interface.events({
     const target = event.target;
     const interfaceName = target.interfaceName.value;
     const fDNumber = target.fDNumber.value;
-    const email = target.email.value;
-    const facebook = target.facebook.value;
-    const sms = target.sms.value;
+    const email = target.email.checked;
+    const facebook = target.facebook.checked;
+    const sms = target.sms.checked;
 
     // Insert a task into the collection
     Interfaces.insert({

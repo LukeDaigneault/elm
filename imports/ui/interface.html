@@ -22,13 +22,13 @@
             <div class="col-sm-offset-2 col-sm-10">
               <div class="checkbox">
                 <label class="checkbox-inline">
-                  <input name="email" type="checkbox" id="inlineCheckbox1" value="option1"> Email
+                  <input name="email" type="checkbox"> Email
                 </label>
                 <label class="checkbox-inline">
-                  <input name="facebook" type="checkbox" id="inlineCheckbox2" value="option2"> Facebook Messanger
+                  <input name="facebook" type="checkbox"> Facebook Messanger
                 </label>
                 <label class="checkbox-inline">
-                  <input name="sms" type="checkbox" id="inlineCheckbox3" value="option3"> SMS
+                  <input name="sms" type="checkbox"> SMS
                 </label>
               </div>
             </div>
@@ -52,9 +52,9 @@
           <tr>
             <th>Interface Name</th>
             <th>FD Number</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th class="center-align-text">Email</th>
+            <th class="center-align-text">Facebook</th>
+            <th class="center-align-text">SMS</th>
           </tr>
         </thead>
         <tbody>
@@ -62,8 +62,27 @@
             <tr>
               <td>{{interfaceName}}</td>
               <td>{{fDNumber}}</td>
-              <td></td>
-              <td></td>
+              <td class="center-align-text">
+                {{#if email}}
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {{else}}
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                {{/if}}
+              </td>
+              <td class="center-align-text">
+                {{#if facebook}}
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {{else}}
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                {{/if}}
+              </td>
+              <td class="center-align-text">
+                {{#if sms}}
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {{else}}
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                {{/if}}
+            </td>
               <td><button type="button" class="btn btn-danger delete-interface">Delete</button></td>
             </tr>
 
