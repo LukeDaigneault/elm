@@ -5,10 +5,10 @@ if(Meteor.isClient) {
       this.render('body');
   });
   Router.route('/ManageInterfaces',function(){
-      this.render('interface', {data: {navinterface: 'active'}});
+      this.render('manageInterfaces');
   });
     Router.route('/Dashboard',function(){
-        this.render('dashboard',{data: {navdashboard: 'active'}});
+        this.render('dashboard');
     });
 }
 

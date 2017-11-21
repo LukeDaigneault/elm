@@ -2,16 +2,16 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Interfaces } from '../api/interfaces.js';
 
-import './interface.html';
+import './manageInterfaces.html';
 
-Template.interface.helpers({
+Template.manageInterfaces.helpers({
   interfaces() {
     return Interfaces.find({}, {sort: {interfaceName: 1} });
   }
 });
 
-Template.interface.events({
-  'submit .new-interface'(event) {
+Template.manageInterfaces.events({
+  'submit .add-interface'(event) {
     // Prevent default browser form submit
     event.preventDefault();
 
