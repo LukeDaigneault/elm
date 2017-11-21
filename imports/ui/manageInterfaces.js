@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Interfaces } from '../api/interfaces.js';
 
+import './interface.js';
 import './manageInterfaces.html';
 
 Template.manageInterfaces.helpers({
@@ -39,8 +40,5 @@ Template.manageInterfaces.events({
     target.email.checked = false;
     target.facebook.checked = false;
     target.sms.checked = false;
-  },
-  'click .delete-interface'() {
-    Interfaces.remove(this._id);
   },
 });

@@ -60,32 +60,8 @@
         </thead>
         <tbody>
           {{#each interfaces}}
-            <tr>
-              <td>{{interfaceName}}</td>
-              <td>{{fDNumber}}</td>
-              <td class="center-align-text">
-                {{#if email}}
-                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                {{else}}
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                {{/if}}
-              </td>
-              <td class="center-align-text">
-                {{#if facebook}}
-                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                {{else}}
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                {{/if}}
-              </td>
-              <td class="center-align-text">
-                {{#if sms}}
-                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                {{else}}
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                {{/if}}
-            </td>
-              <td><button type="button" class="btn btn-danger delete-interface">Delete</button></td>
-            </tr>
+
+            {{> interface}}
 
           {{/each}}
 
