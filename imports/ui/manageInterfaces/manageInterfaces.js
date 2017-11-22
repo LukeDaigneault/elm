@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Interfaces } from '../api/interfaces.js';
+import { Interfaces } from '../../api/interfaces.js';
 
 import './interface.js';
 import './manageInterfaces.html';
