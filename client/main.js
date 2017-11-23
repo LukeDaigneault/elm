@@ -10,9 +10,9 @@ if(Meteor.isClient) {
   // all properties available in the route function
   // are also available here such as this.params
 
-  if (!Meteor.userId()) {
+  if (!Meteor.userId() && !Meteor.loggingIn()) {
     // if the user is not logged in, render the Login template
-    this.redirect('Welcome');
+    this.redirect('/');
   } else {
     // otherwise don't hold up the rest of hooks or our route/action function
     // from running
@@ -22,7 +22,7 @@ if(Meteor.isClient) {
 except: ['Welcome']});
 
   Router.route('/',function(){
-    this.redirect('welcome');
+    this.render('welcome');
   });
   Router.route('Welcome', function(){
     this.render('welcome');
