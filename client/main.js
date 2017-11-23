@@ -28,11 +28,14 @@ except: ['Welcome']});
     this.render('welcome');
   });
   Router.route('/ManageInterfaces',function(){
-      this.render('manageInterfaces');
+    this.render('manageInterfaces');
   });
-    Router.route('/Dashboard',function(){
-        this.render('dashboard');
-    });
+  Router.route('/Dashboard',function(){
+    this.render('dashboard');
+  });
+  Router.route('/ManageProfile',function(){
+    this.render('manageProfile');
+  });
 }
 
 Template.registerHelper('currentRouteIs', function (route) {
