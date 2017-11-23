@@ -7,7 +7,7 @@ import './manageInterfaces.html';
 
 Template.manageInterfaces.helpers({
   interfaces() {
-    return Interfaces.find({}, {sort: {interfaceName: 1} });
+    return Interfaces.find({owner: Meteor.userId()}, {sort: {interfaceName: 1} });
   }
 });
 
@@ -32,6 +32,7 @@ Template.manageInterfaces.events({
       facebook: facebook,
       sms: sms,
       createdAt: new Date(), // current time
+      owner: Meteor.userId(),
     });
 
     // Clear form
