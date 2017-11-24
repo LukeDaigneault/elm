@@ -40,9 +40,5 @@ Template.manageProfile.events({
 
     });
 
-
-    // Clear form
-  //  target.interfaceName.value = '';
-
   },
 });

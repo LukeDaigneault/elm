@@ -12,7 +12,7 @@ if(Meteor.isClient) {
 
   if (!Meteor.userId() && !Meteor.loggingIn()) {
     // if the user is not logged in, render the Login template
-    this.redirect('Welcome');
+    this.redirect('/Welcome');
   } else {
     // otherwise don't hold up the rest of hooks or our route/action function
     // from running
@@ -24,7 +24,7 @@ except: ['Welcome']});
   Router.route('/',function(){
     this.render('welcome');
   });
-  Router.route('Welcome', function(){
+  Router.route('/Welcome', function(){
     this.render('welcome');
   });
   Router.route('/ManageInterfaces',function(){
