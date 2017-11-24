@@ -6,7 +6,7 @@ export const Interfaces = new Mongo.Collection('interfaces');
 
 if(Meteor.isServer){
   Meteor.publish("interfaces", function interfacesPublication(){
-    return Interfaces.find({owner: Meteor.userId()}, {sort: {interfaceName: 1} });
+    return Interfaces.find({owner: this.userId});
   });
 
 }
