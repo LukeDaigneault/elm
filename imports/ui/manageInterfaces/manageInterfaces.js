@@ -5,10 +5,15 @@ import { Interfaces } from '../../api/interfaces.js';
 import './interface.js';
 import './manageInterfaces.html';
 
+Template.body.onCreated(function bodyOnCreated() {
+  Meteor.subscribe('interfaces');
+});
+
 Template.manageInterfaces.helpers({
   interfaces() {
+
     return Interfaces.find({owner: Meteor.userId()}, {sort: {interfaceName: 1} });
-  }
+      }
 });
 
 Template.manageInterfaces.events({
@@ -24,8 +29,7 @@ Template.manageInterfaces.events({
     const facebook = target.facebook.checked;
     const sms = target.sms.checked;
 
-    // Insert a task into the collection
-    Interfaces.insert({
+    Meteor.call('interfaces.insert', {
       interfaceName: interfaceName,
       fID: fID,
       email: email,
