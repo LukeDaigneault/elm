@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { Accounts } from 'meteor/accounts-base';
 
 export const Profiles = new Mongo.Collection('profiles');
 
@@ -21,6 +22,9 @@ Meteor.methods({
 
       Profiles.upsert({owner: owner}, {$set:profile});
 
+      if(profile.username){
+        Accounts.setUsername(owner, profile.username);
+      }
   },
 
 });
