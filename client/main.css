@@ -88,21 +88,28 @@ body {
 }
 
 
-/*
- * Placeholder dashboard ideas
- */
+ .counter
+ {
+     text-align: center;
+     margin-top: 20px;
+     margin-bottom: 30px;
+ }
 
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
-}
+
+ .counter-count
+ {
+     font-size: 32px;
+     background-color: #028AC6;
+     border-radius: 50%;
+     position: relative;
+     color: #ffffff;
+     text-align: center;
+     line-height: 200px;
+     width: 200px;
+     height: 200px;
+     -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+     -ms-border-radius: 50%;
+     -o-border-radius: 50%;
+     display: inline-block;
+ }

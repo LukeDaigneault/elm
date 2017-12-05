@@ -13,7 +13,7 @@ if(Meteor.isServer){
 
 Meteor.methods({
   'alerts.insert'(alert) {
-
+      alert.createdAt = new Date(); // current time
       // Insert a task into the collection
       Alerts.insert(alert);
 
