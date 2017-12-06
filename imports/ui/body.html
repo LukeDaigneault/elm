@@ -22,9 +22,9 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="{{#if currentRouteIs 'Dashboard'}}active{{/if}}"><a href="./Dashboard">Dashboard</a></li>
-          <li class="{{#if currentRouteIs 'ManageInterfaces'}}active{{/if}}"><a href="./ManageInterfaces">Manage Interfaces</a></li>
-          <li class="{{#if currentRouteIs 'ManageProfile'}}active{{/if}}"><a href="./ManageProfile">Manage Profile</a></li>
+          <li class="{{isActiveRoute  'Dashboard'}}"><a href="./Dashboard">Dashboard</a></li>
+          <li class="{{isActiveRoute  'ManageInterfaces'}}"><a href="./ManageInterfaces">Manage Interfaces</a></li>
+          <li class="{{isActiveRoute  'ManageProfile'}}"><a href="./ManageProfile">Manage Profile</a></li>
         </ul>
       </div>
      </div>

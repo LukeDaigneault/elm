@@ -38,8 +38,6 @@ except: ['Welcome']});
   });
 }
 
-
-
-Template.registerHelper('currentRouteIs', function (route) {
-  return Router.current().route.getName() === route;
+Template.registerHelper('formatDate', function(date) {
+  return moment(date).format();
 });

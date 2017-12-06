@@ -22,3 +22,5 @@ jquery
 iron:router
 accounts-password
 ian:accounts-ui-bootstrap-3
+momentjs:moment
+zimme:active-route

@@ -10,6 +10,11 @@ Template.body.onCreated(function bodyOnCreated() {
 });
 
 Template.dashboard.helpers({
+
+  alerts() {
+    return Alerts.find({},{sort: {createdAt: -1}, limit: 30});
+  },
+
   alert_count_today() {
     const start = new Date();
     start.setHours(0,0,0,0);
