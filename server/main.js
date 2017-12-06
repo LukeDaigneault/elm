@@ -6,7 +6,6 @@ import '../imports/api/alerts.js';
 if (Meteor.isServer) {
   Router.route('/alert', {where: 'server'})
     .post(function() {
-       console.log(this.request.body.alert);
       var response;
         if(this.request.body.alert === undefined || this.request.body.alert === null || this.request.body.alert === "") {
             response = {
