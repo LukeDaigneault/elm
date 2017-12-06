@@ -88,4 +88,20 @@ Template.dashboard.helpers({
     }).count();
   },
 
+  interfaceName(fID) {
+    const interface = Interfaces.findOne({owner: Meteor.userId(), fID: fID}, {interfaceName:1});
+
+    return interface.interfaceName;
+    }
+
+});
+
+Template.dashboard.events({
+  'click .errorLookup'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+    console.log(event);
+
+    $('#modalErrorData pre').text(this.errorMessage);
+  },
 });
