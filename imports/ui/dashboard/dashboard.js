@@ -52,7 +52,7 @@ Template.dashboard.helpers({
       fIDs.push(doc.fID);
     });
 
-    const start = new Date(TimeSync.serverTime());
+    const start = new Date();
     start.setDate(start.getDate()-1);
 
     return Alerts.find({
