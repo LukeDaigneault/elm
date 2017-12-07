@@ -33,6 +33,9 @@ except: ['Welcome']});
   Router.route('/Dashboard',function(){
     this.render('dashboard');
   });
+  Router.route('/SearchAlerts',function(){
+    this.render('searchAlerts');
+  });
   Router.route('/ManageProfile',function(){
     this.render('manageProfile');
   });
