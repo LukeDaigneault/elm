@@ -23,7 +23,7 @@ Template.dashboard.helpers({
     return Alerts.find({flowIdentifier: {$in: fIDs}}, {sort: {createdAt: -1}, limit: 30});
   },
 
-  alert_count_today() {
+  alert_count_hour() {
     const interfaces = Interfaces.find({owner: Meteor.userId()}, {fID:1,  _id:0});
     const fIDs = [];
 
@@ -32,7 +32,28 @@ Template.dashboard.helpers({
     });
 
     const start = new Date();
-    start.setHours(0,0,0,0);
+    start.setHours(start.getHours()-1);
+
+    return Alerts.find({
+      flowIdentifier: {
+        $in: fIDs
+      },
+      createdAt: {
+        $gte: start,
+      }
+    }).count();
+  },
+
+  alert_count_today() {
+    const interfaces = Interfaces.find({owner: Meteor.userId()}, {fID:1,  _id:0});
+    const fIDs = [];
+
+    interfaces.forEach(function(doc){
+      fIDs.push(doc.fID);
+    });
+
+    const start = new Date(TimeSync.serverTime());
+    start.setDate(start.getDate()-1);
 
     return Alerts.find({
       flowIdentifier: {
@@ -54,7 +75,6 @@ Template.dashboard.helpers({
 
     const start = new Date();
     start.setDate(start.getDate()-7);
-    start.setHours(0,0,0,0);
 
     return Alerts.find({
       flowIdentifier: {
@@ -76,7 +96,6 @@ Template.dashboard.helpers({
 
     const start = new Date();
     start.setMonth(start.getMonth()-1);
-    start.setHours(0,0,0,0);
 
     return Alerts.find({
       flowIdentifier: {
@@ -100,7 +119,6 @@ Template.dashboard.events({
   'click .errorLookup'(event) {
     // Prevent default browser form submit
     event.preventDefault();
-    console.log(event);
 
     $('#modalErrorData pre').text(this.errorMessage);
   },
