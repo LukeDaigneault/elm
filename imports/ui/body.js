@@ -5,5 +5,4 @@ import './welcome.js';
 import './dashboard/dashboard.js';
 import './manageInterfaces/manageInterfaces.js';
 import './manageProfile/manageProfile.js';
-import './searchAlerts/searchAlerts.js';
 import './body.html';
