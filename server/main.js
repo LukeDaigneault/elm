@@ -3,6 +3,8 @@ import '../imports/api/profiles.js';
 import '../imports/api/alerts.js';
 
 
+
+
 if (Meteor.isServer) {
   Router.route('/alert', {where: 'server'})
     .post(function() {
@@ -14,10 +16,11 @@ if (Meteor.isServer) {
             };
         } else {
           Meteor.call('alerts.insert', this.request.body.alert);
+
             response = {
                 "error" : false,
                 "message" : "alert stored."
-            }
+            };
         }
 
         this.response.setHeader('Content-Type','application/json');
