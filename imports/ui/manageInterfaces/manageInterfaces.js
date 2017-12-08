@@ -24,14 +24,14 @@ Template.manageInterfaces.events({
     // Get value from form element
     const target = event.target;
     const interfaceName = target.interfaceName.value;
-    const fID = target.fID.value;
+    const flowIdentifier = target.flowIdentifier.value;
     const email = target.email.checked;
     const facebook = target.facebook.checked;
     const sms = target.sms.checked;
 
     Meteor.call('interfaces.insert', {
       interfaceName: interfaceName,
-      fID: fID,
+      flowIdentifier: flowIdentifier,
       email: email,
       facebook: facebook,
       sms: sms,
@@ -41,7 +41,7 @@ Template.manageInterfaces.events({
 
     // Clear form
     target.interfaceName.value = '';
-    target.fID.value = '';
+    target.flowIdentifier.value = '';
     target.email.checked = false;
     target.facebook.checked = false;
     target.sms.checked = false;
