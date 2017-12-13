@@ -2,8 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Interfaces } from './interfaces.js';
 import { Profiles } from './profiles.js';
 
-var accountSid = ''; // Your Account SID from www.twilio.com/console
-var authToken = '';   // Your Auth Token from www.twilio.com/console
+var accountSid = 'AC8fafae578b7e30c753881ca2e673bd20'; // Your Account SID from www.twilio.com/console
+var authToken = '81251d24e6c382daf1609b5816071ffe';   // Your Auth Token from www.twilio.com/console
 
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
