@@ -28,6 +28,8 @@ Template.manageProfile.events({
     const email = target.email.value;
     const phoneNumber = target.phoneNumber.value;
     const username = target.username.value;
+    const twilloAccountID = target.twilloAccountID.value;
+    const twilloAuthToken = target.twilloAuthToken.value;
 
     // Insert a profile into the collection
      Meteor.call('profiles.upsert', Meteor.userId(), {
@@ -39,6 +41,8 @@ Template.manageProfile.events({
       createdAt: new Date(), // current time
       owner: Meteor.userId(),
       username: username,
+      twilloAccountID: twilloAccountID,
+      twilloAuthToken: twilloAuthToken,
 
     });
 

@@ -10,21 +10,22 @@ if(Meteor.isServer){
     return Profiles.find({owner: this.userId});
   });
 
-}
 
-Meteor.methods({
-  'profiles.upsert'(owner, profile) {
-    check(owner, String);
-    // Make sure the user is logged in before inserting a task
-    if (! Meteor.userId()) {
-      throw new Meteor.Error('not-authorized');
-    }
-
-      Profiles.upsert({owner: owner}, {$set:profile});
-
-      if(profile.username){
-        Accounts.setUsername(owner, profile.username);
+  Meteor.methods({
+    'profiles.upsert'(owner, profile) {
+      check(owner, String);
+      // Make sure the user is logged in before inserting a task
+      if (! Meteor.userId()) {
+        throw new Meteor.Error('not-authorized');
       }
-  },
 
-});
+        Profiles.upsert({owner: owner}, {$set:profile});
+
+        if(profile.username){
+          Accounts.setUsername(owner, profile.username);
+        }
+    },
+
+  });
+
+}
