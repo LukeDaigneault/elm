@@ -9,6 +9,10 @@ if(Meteor.isServer){
     return Alerts.find();
   });
 
+  Meteor.setInterval(function(){
+    Meteor.call('alerts.clean');
+  }, 60000);
+
 }
 
 Meteor.methods({
@@ -18,6 +22,16 @@ Meteor.methods({
       Alerts.insert(alert);
 
   },
+  'alerts.clean'() {
+
+    const start = new Date();
+    start.setMonth(start.getMonth()-1);
+
+    Alerts.remove({createdAt: {"$lt" : start}});
+
+    console.log("Clean has been run on records older than : " + start);
+
+    },
 
 
 });
