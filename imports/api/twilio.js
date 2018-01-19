@@ -6,7 +6,7 @@ var twilio = require('twilio');
 if(Meteor.isServer){
   Meteor.methods({
   'sms.send'(alert) {
-
+              this.unblock();
               const smsOwners = Interfaces.find({flowIdentifier: alert.flowIdentifier, sms: true}, {owner:1,  _id:0});
 
               const owners = [];

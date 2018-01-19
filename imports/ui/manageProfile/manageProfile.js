@@ -46,5 +46,14 @@ Template.manageProfile.events({
 
     });
 
+    Router.go('/Dashboard');
+
+  },
+  'reset .add-profile'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+
+    Router.go('/Dashboard');
+
   },
 });
