@@ -10,14 +10,22 @@ Template.body.onCreated(function bodyOnCreated() {
 });
 
 Template.manageInterfaces.helpers({
-  interfaces() {
+  'interfaces': function() {
 
     return Interfaces.find({owner: Meteor.userId()}, {sort: {interfaceName: 1} });
-      }
+  },
+  'selectedInterface': function() {
+    if (Session.get("selectedInterface") != ''){
+    return Interfaces.findOne({owner: Meteor.userId(), _id: Session.get("selectedInterface") });
+  }else{
+    return null;
+  }
+  },
+
 });
 
 Template.manageInterfaces.events({
-  'submit .add-interface'(event) {
+  'submit .save-interface'(event) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -29,6 +37,7 @@ Template.manageInterfaces.events({
     const facebook = target.facebook.checked;
     const sms = target.sms.checked;
 
+    if (Session.get("selectedInterface") == "" || Session.get("selectedInterface") == null){
     Meteor.call('interfaces.insert', {
       interfaceName: interfaceName,
       flowIdentifier: flowIdentifier,
@@ -38,6 +47,17 @@ Template.manageInterfaces.events({
       createdAt: new Date(), // current time
       owner: Meteor.userId(),
     });
+  }else {
+      Meteor.call('interfaces.update',
+        {_id: Session.get("selectedInterface"),
+        interfaceName: interfaceName,
+        flowIdentifier: flowIdentifier,
+        email: email,
+        facebook: facebook,
+        sms: sms }
+      );
+    }
+
 
     // Clear form
     target.interfaceName.value = '';
@@ -45,5 +65,7 @@ Template.manageInterfaces.events({
     target.email.checked = false;
     target.facebook.checked = false;
     target.sms.checked = false;
+    Session.set("selectedInterface", "");
+
   },
 });

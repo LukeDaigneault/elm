@@ -22,14 +22,26 @@ Meteor.methods({
       Interfaces.insert(interface);
 
   },
+  'interfaces.update'(interface) {
+
+    // Make sure the user is logged in before inserting a task
+    if (! Meteor.userId()) {
+      throw new Meteor.Error('not-authorized');
+    }
+      // Insert a task into the collection
+      Interfaces.update({_id: interface._id}, {$set: interface});
+
+
+  },
   'interfaces.remove'(interfaceId) {
     check(interfaceId, String);
 
     if (! Meteor.userId()) {
       throw new Meteor.Error('not-authorized');
     }
-
+    if (!this.isSimulation) {
     Interfaces.remove(interfaceId);
+  }
   },
 
 });

@@ -5,6 +5,8 @@ import { Profiles } from './profiles.js';
 if(Meteor.isServer){
   Meteor.methods({
   'email.send'(alert) {
+
+    //Need to get Interface name working here some how
               this.unblock();
               const emailOwners = Interfaces.find({flowIdentifier: alert.flowIdentifier, email: true}, {owner:1,  _id:0});
 
