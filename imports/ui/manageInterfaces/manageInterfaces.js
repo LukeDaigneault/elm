@@ -54,7 +54,9 @@ Template.manageInterfaces.events({
         flowIdentifier: flowIdentifier,
         email: email,
         facebook: facebook,
-        sms: sms }
+        sms: sms,
+        updatedAt: new Date(), // current time
+      }
       );
     }
 
