@@ -32,7 +32,10 @@ Template.manageInterfaces.events({
     // Get value from form element
     const target = event.target;
     const interfaceName = target.interfaceName.value;
-    const flowIdentifier = target.flowIdentifier.value;
+    const hourWarn = target.hourWarn.value;
+    const dayWarn = target.dayWarn.value;
+    const weekWarn = target.weekWarn.value;
+    const monthWarn = target.monthWarn.value;
     const email = target.email.checked;
     const facebook = target.facebook.checked;
     const sms = target.sms.checked;
@@ -40,7 +43,10 @@ Template.manageInterfaces.events({
     if (Session.get("selectedInterface") == "" || Session.get("selectedInterface") == null){
     Meteor.call('interfaces.insert', {
       interfaceName: interfaceName,
-      flowIdentifier: flowIdentifier,
+      hourWarn: hourWarn,
+      dayWarn: dayWarn,
+      weekWarn: weekWarn,
+      monthWarn: monthWarn,
       email: email,
       facebook: facebook,
       sms: sms,
@@ -51,7 +57,10 @@ Template.manageInterfaces.events({
       Meteor.call('interfaces.update',
         {_id: Session.get("selectedInterface"),
         interfaceName: interfaceName,
-        flowIdentifier: flowIdentifier,
+        hourWarn: hourWarn,
+        dayWarn: dayWarn,
+        weekWarn: weekWarn,
+        monthWarn: monthWarn,
         email: email,
         facebook: facebook,
         sms: sms,
@@ -63,7 +72,10 @@ Template.manageInterfaces.events({
 
     // Clear form
     target.interfaceName.value = '';
-    target.flowIdentifier.value = '';
+    target.hourWarn.value = '';
+    target.dayWarn.value = '';
+    target.weekWarn.value = '';
+    target.monthWarn.value = '';
     target.email.checked = false;
     target.facebook.checked = false;
     target.sms.checked = false;

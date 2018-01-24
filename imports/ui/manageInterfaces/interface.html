@@ -1,7 +1,6 @@
 <template name="interface">
   <tr class="{{selectedClass}}">
     <td class="interface">{{interfaceName}}</td>
-    <td class="interface">{{flowIdentifier}}</td>
     <td class="center-align-text interface">
       {{#if email}}
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
@@ -23,6 +22,8 @@
         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       {{/if}}
   </td>
-    <td><button type="button" class="btn btn-danger delete-interface">Delete</button></td>
+    <td><button type="button" class="btn btn-danger delete-interface">Delete</button>
+      <button type="button" class="btn btn-info view-component">Components</button>
+        </td>
   </tr>
 </template>

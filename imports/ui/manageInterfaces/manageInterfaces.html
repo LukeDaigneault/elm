@@ -17,12 +17,28 @@
                 <input name="interfaceName" type="text" class="form-control" id="inputIN3" placeholder="Interface Name" value="{{selectedInterface.interfaceName}}">
               </div>
           </div>
+          <h3>Key Performance Indicators</h3>
           <div class="form-group">
-              <label for="inputFD3" class="col-sm-3 control-label">Flow Identifier</label>
-              <div class="col-sm-9">
-                <input name="flowIdentifier" type="text" class="form-control" id="inputFD3" placeholder="Flow Identifier" value="{{selectedInterface.flowIdentifier}}">
+              <label for="inputFD3" class="col-sm-3 control-label">Hourly alerts</label>
+              <div class="col-sm-3">
+                <input name="hourWarn" type="number" class="form-control" id="inputFD3" placeholder="Max hourly alerts"  value="{{selectedInterface.hourWarn}}">
+              </div>
+              <label for="inputFD4" class="col-sm-3 control-label">Daily alerts</label>
+              <div class="col-sm-3">
+                <input name="dayWarn" type="number" class="form-control" id="inputFD4" placeholder="Max daily alerts"  value="{{selectedInterface.dayWarn}}">
+              </div>
+            </div>
+          <div class="form-group">
+              <label for="inputFD5" class="col-sm-3 control-label">Weekly alerts</label>
+              <div class="col-sm-3">
+                <input name="weekWarn" type="number" class="form-control" id="inputFD5" placeholder="Max weekly alerts"  value="{{selectedInterface.weekWarn}}">
+              </div>
+              <label for="inputFD6" class="col-sm-3 control-label">Monthly alerts</label>
+              <div class="col-sm-3">
+                <input name="monthWarn" type="number" class="form-control" id="inputFD6" placeholder="Max monthly alerts"  value="{{selectedInterface.monthWarn}}">
               </div>
           </div>
+          <h3>Alerting Methods</h3>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
               <div class="checkbox">
@@ -56,7 +72,6 @@
         <thead>
           <tr>
             <th>Interface Name</th>
-            <th>Flow Identifier</th>
             <th class="center-align-text">Email</th>
             <th class="center-align-text">Facebook</th>
             <th class="center-align-text">SMS</th>
