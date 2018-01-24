@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import './interface.html';
+import './componentModal.js';
 
 
 Template.interface.helpers({
@@ -34,5 +35,10 @@ Template.interface.events({
     }
 
     Meteor.call('interfaces.remove', this._id);
+  },
+  'click .view-component'(e) {
+    e.preventDefault();
+
+    Modal.show('componentModal');
   },
 });
