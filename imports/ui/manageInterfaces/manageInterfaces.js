@@ -10,6 +10,10 @@ Template.body.onCreated(function bodyOnCreated() {
   Meteor.subscribe('interfaces');
 });
 
+Template.manageInterfaces.onDestroyed(function () {
+  Session.set("selectedInterface", "");
+});
+
 Template.manageInterfaces.helpers({
   'interfaces': function() {
 
