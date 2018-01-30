@@ -57,6 +57,10 @@
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
               <button type="submit" class="btn btn-default">Save</button>
+              {{#if selectedInterface}}
+              <button type="button" class="btn btn-info view-component">Components</button>
+              <button type="button" class="btn btn-danger delete-interface">Delete</button>
+            {{/if}}
             </div>
           </div>
         </form>
@@ -75,7 +79,6 @@
             <th class="center-align-text">Email</th>
             <th class="center-align-text">Facebook</th>
             <th class="center-align-text">SMS</th>
-            <th class="center-align-text"></th>
           </tr>
         </thead>
         <tbody>

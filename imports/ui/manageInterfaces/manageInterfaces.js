@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Interfaces } from '../../api/interfaces.js';
 
 import './interface.js';
+import './componentModal.js';
 import './manageInterfaces.html';
 
 Template.body.onCreated(function bodyOnCreated() {
@@ -81,5 +82,16 @@ Template.manageInterfaces.events({
     target.sms.checked = false;
     Session.set("selectedInterface", "");
 
+  },
+  'click .delete-interface'() {
+    event.preventDefault();
+    Meteor.call('interfaces.remove', Session.get('selectedInterface'));
+    Session.set('selectedInterface', '');
+
+  },
+  'click .view-component'(e) {
+    e.preventDefault();
+
+    Modal.show('componentModal');
   },
 });

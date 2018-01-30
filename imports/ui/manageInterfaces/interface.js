@@ -2,8 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import './interface.html';
-import './componentModal.js';
-
 
 Template.interface.helpers({
   'selectedClass': function(){
@@ -16,8 +14,6 @@ Template.interface.helpers({
 
 });
 
-
-
 Template.interface.events({
   'click .interface'() {
     const interfaceId = this._id;
@@ -28,17 +24,5 @@ Template.interface.events({
     } else {
       Session.set('selectedInterface', interfaceId);
     }
-  },
-  'click .delete-interface'() {
-    if (this._id == Session.get('selectedInterface')) {
-      Session.set('selectedInterface', '');
-    }
-
-    Meteor.call('interfaces.remove', this._id);
-  },
-  'click .view-component'(e) {
-    e.preventDefault();
-
-    Modal.show('componentModal');
   },
 });
