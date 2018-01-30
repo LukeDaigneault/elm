@@ -22,6 +22,17 @@ Meteor.methods({
       Components.insert(component);
 
   },
+  'components.update'(component) {
+
+    // Make sure the user is logged in before inserting a task
+    if (! Meteor.userId()) {
+      throw new Meteor.Error('not-authorized');
+    }
+      // Insert a task into the collection
+      Components.update({_id: component._id}, {$set: component});
+
+
+  },
   'components.remove'(componentId) {
     check(componentId, String);
 

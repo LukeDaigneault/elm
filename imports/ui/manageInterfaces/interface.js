@@ -4,7 +4,7 @@ import { Template } from 'meteor/templating';
 import './interface.html';
 
 Template.interface.helpers({
-  'selectedClass': function(){
+  'selectedInterfaceClass': function(){
     const interfaceId = this._id;
     const selectedInterface = Session.get('selectedInterface');
     if(interfaceId == selectedInterface){

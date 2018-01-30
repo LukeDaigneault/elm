@@ -1,4 +1,5 @@
 import '../imports/api/interfaces.js';
+import '../imports/api/components.js';
 import '../imports/api/profiles.js';
 import '../imports/api/alerts.js';
 import '../imports/api/twilio.js';

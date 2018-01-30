@@ -4,17 +4,50 @@
       <div class="modal-content">
 
         <div class="modal-header">
-          <h4 class="modal-title">Component add / edit</h4>
+          <h3 class="modal-title">Component add / edit</h3>
         </div>
 
         <div class="modal-body">
-          <label for="name">Name</label>
-          <input type="text" id="componentName" />
+          <form>
+            <div class="form-group">
+              <label for="componentName">Component Name</label>
+              <input class="form-control" name="componentName" type="text" id="componentName" placeholder="Name as it appears in the error event" value="{{selectedComponent.componentName}}"/>
+            </div>
+            <div class="form-group">
+              <label for="componentType">Component Type</label>
+              <input class="form-control" name="componentType" type="text" id="componentType" placeholder="Type of Interface component" value="{{selectedComponent.componentType}}"/>
+            </div>
+          </form>
+
+
+          <h3 class="sub-header">Interface Components</h3>
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th>Component Name</th>
+                  <th>Type</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each components}}
+
+                  {{> component}}
+
+                {{/each}}
+
+              </tbody>
+            </table>
+          </div>
+
         </div>
 
+
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary save">Save</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary save-component">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
 
       </div>
