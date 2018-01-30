@@ -25,4 +25,9 @@ Template.interface.events({
       Session.set('selectedInterface', interfaceId);
     }
   },
+  'dblclick .interface'() {
+    const interfaceId = this._id;
+    Session.set('selectedInterface', interfaceId);
+    Modal.show('componentModal');
+  },
 });
