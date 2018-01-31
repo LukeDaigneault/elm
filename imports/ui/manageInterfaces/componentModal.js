@@ -64,5 +64,11 @@ Template.componentModal.events({
     Session.set("selectedComponent", "");
 
   },
+  'click .delete-component'() {
+    event.preventDefault();
+    Meteor.call('components.remove', Session.get("selectedComponent"));
+    Session.set('selectedComponent', '');
+
+  },
 });
 }

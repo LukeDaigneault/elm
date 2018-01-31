@@ -1,6 +1,6 @@
 <template name="componentModal">
   <div class="modal fade">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
 
         <div class="modal-header">
@@ -9,13 +9,41 @@
 
         <div class="modal-body">
           <form>
+
             <div class="form-group">
               <label for="componentName">Component Name</label>
-              <input class="form-control" name="componentName" type="text" id="componentName" placeholder="Name as it appears in the error event" value="{{selectedComponent.componentName}}"/>
+
+              <div class="row">
+                <div class="col-sm-8">
+                    <input class="form-control" name="componentName" type="text" id="componentName" placeholder="Name as it appears in the error event" value="{{selectedComponent.componentName}}"/>
+                </div>
+
+              </div>
+
             </div>
+
             <div class="form-group">
               <label for="componentType">Component Type</label>
-              <input class="form-control" name="componentType" type="text" id="componentType" placeholder="Type of Interface component" value="{{selectedComponent.componentType}}"/>
+
+              <div class="row">
+                <div class="col-sm-8">
+                  <input class="form-control" name="componentType" type="text" id="componentType" placeholder="Type of Interface component" value="{{selectedComponent.componentType}}"/>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-8">
+                <button type="button" class="btn btn-primary save-component">Save</button>
+                {{#if selectedComponent}}
+                <button type="button" class="btn btn-danger delete-component">Delete</button>
+                {{/if}}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+              </div>
             </div>
           </form>
 
@@ -27,7 +55,6 @@
                 <tr>
                   <th>Component Name</th>
                   <th>Type</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -46,8 +73,7 @@
 
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary save-component">Save</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
 
       </div>

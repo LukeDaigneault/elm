@@ -16,12 +16,6 @@ Template.component.helpers({
 });
 
 Template.component.events({
-  'click .delete-component'() {
-    event.preventDefault();
-    Meteor.call('components.remove', this._id);
-    Session.set('selectedComponent', '');
-
-  },
   'click .component'() {
     const componentId = this._id;
     const selectedComponent = Session.get('selectedComponent');
