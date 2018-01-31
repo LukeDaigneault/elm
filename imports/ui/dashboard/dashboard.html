@@ -30,7 +30,8 @@
         <thead>
           <tr>
             <th>Interface Name</th>
-            <th>Flow Identifier</th>
+            <th>Component Name</th>
+            <th>Component Type</th>
             <th>Transaction ID</th>
             <th>Error Code</th>
             <th>Error Time</th>
@@ -40,8 +41,9 @@
           {{#each alerts}}
 
           <tr>
-            <td>{{interfaceName flowIdentifier}}</td>
-            <td>{{flowIdentifier}}</td>
+            <td>{{interfaceName componentName}}</td>
+            <td>{{componentName}}</td>
+            <td>{{componentType componentName}}</td>
             <td>{{transactionId}}</td>
             <td><a href="#" data-toggle="modal" data-target="#modalErrorData" class="errorLookup">{{errorCode}}</a></td>
             <td>{{formatDate createdAt}}</td>

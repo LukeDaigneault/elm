@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Alerts } from '../../api/alerts.js';
 import { Interfaces } from '../../api/interfaces.js';
+import { Components } from '../../api/components.js';
 
 
 import './dashboard.html';
@@ -13,30 +14,30 @@ Template.body.onCreated(function bodyOnCreated() {
 Template.dashboard.helpers({
 
   alerts() {
-    const interfaces = Interfaces.find({owner: Meteor.userId()}, {flowIdentifier:1,  _id:0});
-    const flowIdentifiers = [];
+    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const componentNames = [];
 
-    interfaces.forEach(function(doc){
-      flowIdentifiers.push(doc.flowIdentifier);
+    components.forEach(function(doc){
+      componentNames.push(doc.componentName);
     });
 
-    return Alerts.find({flowIdentifier: {$in: flowIdentifiers}}, {sort: {createdAt: -1}, limit: 30});
+    return Alerts.find({componentName: {$in: componentNames}}, {sort: {createdAt: -1}, limit: 30});
   },
 
   alert_count_hour() {
-    const interfaces = Interfaces.find({owner: Meteor.userId()}, {flowIdentifier:1,  _id:0});
-    const flowIdentifiers = [];
+    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const componentNames = [];
 
-    interfaces.forEach(function(doc){
-      flowIdentifiers.push(doc.flowIdentifier);
+    components.forEach(function(doc){
+      componentNames.push(doc.componentName);
     });
 
     const start = new Date();
     start.setHours(start.getHours()-1);
 
     return Alerts.find({
-      flowIdentifier: {
-        $in: flowIdentifiers
+      componentName: {
+        $in: componentNames
       },
       createdAt: {
         $gte: start,
@@ -45,19 +46,19 @@ Template.dashboard.helpers({
   },
 
   alert_count_today() {
-    const interfaces = Interfaces.find({owner: Meteor.userId()}, {flowIdentifier:1,  _id:0});
-    const flowIdentifiers = [];
+    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const componentNames = [];
 
-    interfaces.forEach(function(doc){
-      flowIdentifiers.push(doc.flowIdentifier);
+    components.forEach(function(doc){
+      componentNames.push(doc.componentName);
     });
 
     const start = new Date();
     start.setDate(start.getDate()-1);
 
     return Alerts.find({
-      flowIdentifier: {
-        $in: flowIdentifiers
+      componentName: {
+        $in: componentNames
       },
       createdAt: {
         $gte: start,
@@ -66,19 +67,19 @@ Template.dashboard.helpers({
   },
 
   alert_count_week() {
-    const interfaces = Interfaces.find({owner: Meteor.userId()}, {flowIdentifier:1,  _id:0});
-    const flowIdentifiers = [];
+    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const componentNames = [];
 
-    interfaces.forEach(function(doc){
-      flowIdentifiers.push(doc.flowIdentifier);
+    components.forEach(function(doc){
+      componentNames.push(doc.componentName);
     });
 
     const start = new Date();
     start.setDate(start.getDate()-7);
 
     return Alerts.find({
-      flowIdentifier: {
-        $in: flowIdentifiers
+      componentName: {
+        $in: componentNames
       },
       createdAt: {
         $gte: start,
@@ -87,19 +88,19 @@ Template.dashboard.helpers({
   },
 
   alert_count_month() {
-    const interfaces = Interfaces.find({owner: Meteor.userId()}, {flowIdentifier:1,  _id:0});
-    const flowIdentifiers = [];
+    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const componentNames = [];
 
-    interfaces.forEach(function(doc){
-      flowIdentifiers.push(doc.flowIdentifier);
+    components.forEach(function(doc){
+      componentNames.push(doc.componentName);
     });
 
     const start = new Date();
     start.setMonth(start.getMonth()-1);
 
     return Alerts.find({
-      flowIdentifier: {
-        $in: flowIdentifiers
+      componentName: {
+        $in: componentNames
       },
       createdAt: {
         $gte: start,
@@ -107,11 +108,18 @@ Template.dashboard.helpers({
     }).count();
   },
 
-  interfaceName(flowIdentifier) {
-    const interface = Interfaces.findOne({owner: Meteor.userId(), flowIdentifier: flowIdentifier}, {interfaceName:1});
+  interfaceName(componentName) {
+    const component = Components.findOne({owner: Meteor.userId(), componentName: componentName}, {interfaceOwner:1});
+    const interface = Interfaces.findOne({owner: Meteor.userId(), _id: component.interfaceOwner}, {interfaceName:1});
 
     return interface.interfaceName;
-    }
+  },
+
+  componentType(componentName){
+    const component = Components.findOne({owner: Meteor.userId(), componentName: componentName}, {componentType:1});
+
+    return component.componentType;
+  }
 
 });
 
