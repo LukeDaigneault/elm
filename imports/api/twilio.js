@@ -7,6 +7,9 @@ if(Meteor.isServer){
   Meteor.methods({
   'sms.send'(alert) {
               this.unblock();
+
+              const twilioAccountId = Meteor.settings.twilioAccountId;
+              const twilloAuthtoken = Meteor.settings.twilloAuthtoken;
               const smsOwners = Interfaces.find({flowIdentifier: alert.flowIdentifier, sms: true}, {owner:1,  _id:0});
 
               const owners = [];
@@ -15,14 +18,14 @@ if(Meteor.isServer){
                 owners.push(doc.owner);
               });
 
-              const smsNumbers = Profiles.find({owner: {$in: owners}}, {phoneNumber:1, twilloAccountID:1, twilloAuthToken:1,  _id:0});
+              const smsNumbers = Profiles.find({owner: {$in: owners}}, {phoneNumber:1, _id:0});
 
 
               smsNumbers.forEach(function(doc){
 
               try {
-                    if (doc.twilloAccountID && doc.twilloAuthToken){
-                       var client = new twilio(doc.twilloAccountID, doc.twilloAuthToken);
+                    if (twilioAccountId && twilloAuthtoken){
+                       var client = new twilio(twilioAccountId, twilloAuthtoken);
                        client.messages.create({
                        body: 'An error has occured with Interface ' + alert.flowIdentifier +  ' transaction ID: ' + alert.transactionId,
                         to: doc.phoneNumber,  // Text this number

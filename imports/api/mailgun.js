@@ -24,7 +24,7 @@ if(Meteor.isServer){
               try {
                     Email.send({
                       to: doc.email,
-                      from: "postmaster@sandbox60d6dfd3ac9f44f28305a177bf6da2a4.mailgun.org",
+                      from: Meteor.settings.emailFromAddress,
                       subject: "Error occured with " + alert.flowIdentifier,
                       text:'An error has occured with Interface ' + alert.flowIdentifier +  ' transaction ID: ' + alert.transactionId,
                       });
