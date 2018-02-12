@@ -27,12 +27,12 @@ if(Meteor.isServer){
                           Email.send({
                             to: ownerDoc.email,
                             from: Meteor.settings.emailFromAddress,
-                            subject: 'An error has occured with Interface ' + intDoc.interfaceName,
+                            subject: 'An error has occured with Interface "' + intDoc.interfaceName +'"',
                             text:'An error has occured with Interface "' +
                              intDoc.interfaceName +
                              '" in component "' +
                              alert.componentName +
-                             '" , transaction ID: ' +
+                             '", transaction ID: ' +
                              alert.transactionId,
                             });
 

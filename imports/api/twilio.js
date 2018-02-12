@@ -31,7 +31,7 @@ if(Meteor.isServer){
                               intDoc.interfaceName +
                               '" in component "' +
                               alert.componentName +
-                              '" , transaction ID: ' +
+                              '", transaction ID: ' +
                               alert.transactionId,
                              to: ownerDoc.phoneNumber,  // Text this number
                              from: '+33756798817' // From a valid Twilio number
