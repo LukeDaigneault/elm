@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Interfaces } from './interfaces.js';
+import { Components } from './components.js';
 import { Profiles } from './profiles.js';
 
 if(Meteor.isServer){
@@ -8,30 +9,38 @@ if(Meteor.isServer){
 
     //Need to get Interface name working here some how
               this.unblock();
-              const emailOwners = Interfaces.find({flowIdentifier: alert.flowIdentifier, email: true}, {owner:1,  _id:0});
 
-              const owners = [];
+              const componentInterfaces = Components.find({componentName: alert.componentName}, {interfaceOwner:1, _id:0});
 
-              emailOwners.forEach(function(doc){
-                owners.push(doc.owner);
-              });
+              componentInterfaces.forEach(function (compDoc) {
 
-              const emailAddresses = Profiles.find({owner: {$in: owners}}, {email:1,  _id:0});
+                const emailOwners = Interfaces.find({_id: compDoc.interfaceOwner, email: true}, {interfaceName:1, owner:1,  _id:0});
+
+                emailOwners.forEach(function(intDoc){
+
+                  const emailAddresses = Profiles.find({owner: intDoc.owner}, {email:1,  _id:0});
 
 
-              emailAddresses.forEach(function(doc){
+                  emailAddresses.forEach(function(ownerDoc){
 
-              try {
-                    Email.send({
-                      to: doc.email,
-                      from: Meteor.settings.emailFromAddress,
-                      subject: "Error occured with " + alert.flowIdentifier,
-                      text:'An error has occured with Interface ' + alert.flowIdentifier +  ' transaction ID: ' + alert.transactionId,
-                      });
+                    try {
+                          Email.send({
+                            to: ownerDoc.email,
+                            from: Meteor.settings.emailFromAddress,
+                            subject: 'An error has occured with Interface ' + intDoc.interfaceName,
+                            text:'An error has occured with Interface "' +
+                             intDoc.interfaceName +
+                             '" in component "' +
+                             alert.componentName +
+                             '" , transaction ID: ' +
+                             alert.transactionId,
+                            });
 
-              } catch (err) {
-                throw new Meteor.error(err);
-              }
+                    } catch (err) {
+                      throw new Meteor.error(err);
+                    }
+                  });
+                });
               });
         }
 
