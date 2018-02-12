@@ -12,7 +12,7 @@ if(Meteor.isServer){
 
 
   Meteor.methods({
-    'profiles.upsert'(owner, profile) {
+    'profiles.upsert'(owner, username, profile) {
       check(owner, String);
       // Make sure the user is logged in before inserting a task
       if (! Meteor.userId()) {
@@ -21,8 +21,8 @@ if(Meteor.isServer){
 
         Profiles.upsert({owner: owner}, {$set:profile});
 
-        if(profile.username){
-          Accounts.setUsername(owner, profile.username);
+        if(username){
+          Accounts.setUsername(owner, username);
         }
     },
 

@@ -30,7 +30,7 @@ Template.manageProfile.events({
     const username = target.username.value;
 
     // Insert a profile into the collection
-     Meteor.call('profiles.upsert', Meteor.userId(), {
+     Meteor.call('profiles.upsert', Meteor.userId(), username, {
       firstName: firstName,
       lastName: lastName,
       fBookId: fBookId,
@@ -38,8 +38,6 @@ Template.manageProfile.events({
       phoneNumber: phoneNumber,
       createdAt: new Date(), // current time
       owner: Meteor.userId(),
-      username: username,
-
     });
 
     Router.go('/Dashboard');
