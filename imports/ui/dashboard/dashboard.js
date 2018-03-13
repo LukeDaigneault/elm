@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Alerts } from '../../api/alerts.js';
+import './dashboardModal.js';
 import { Interfaces } from '../../api/interfaces.js';
 import { Components } from '../../api/components.js';
 
@@ -128,6 +129,9 @@ Template.dashboard.events({
     // Prevent default browser form submit
     event.preventDefault();
 
-    $('#modalErrorData pre').text(this.errorMessage);
+    Session.set("selectedError", this.errorMessage);
+
+    Modal.show('dashboardModal');
+
   },
 });
