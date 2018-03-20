@@ -5,7 +5,7 @@ import { check } from 'meteor/check';
 export const Components = new Mongo.Collection('components');
 
 if(Meteor.isServer){
-  Meteor.publish("components", function interfacesPublication(){
+  Meteor.publish("components", function componentsPublication(){
     return Components.find({owner: this.userId});
   });
 

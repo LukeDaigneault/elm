@@ -1,21 +1,24 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Alerts } from '../../api/alerts.js';
-import './dashboardModal.js';
 import { Interfaces } from '../../api/interfaces.js';
 import { Components } from '../../api/components.js';
+import './dashboardModal.js';
+import './dashboardChart.js';
 
 
 import './dashboard.html';
 
 Template.body.onCreated(function bodyOnCreated() {
   Meteor.subscribe('alerts');
+  Meteor.subscribe("components");
+  Meteor.subscribe("interfaces");
 });
 
 Template.dashboard.helpers({
 
   alerts() {
-    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const components = Components.find({}, {componentName:1,  _id:0});
     const componentNames = [];
 
     components.forEach(function(doc){
@@ -26,7 +29,7 @@ Template.dashboard.helpers({
   },
 
   alert_count_hour() {
-    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const components = Components.find({}, {componentName:1,  _id:0});
     const componentNames = [];
 
     components.forEach(function(doc){
@@ -47,7 +50,7 @@ Template.dashboard.helpers({
   },
 
   alert_count_today() {
-    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const components = Components.find({}, {componentName:1,  _id:0});
     const componentNames = [];
 
     components.forEach(function(doc){
@@ -68,7 +71,7 @@ Template.dashboard.helpers({
   },
 
   alert_count_week() {
-    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const components = Components.find({}, {componentName:1,  _id:0});
     const componentNames = [];
 
     components.forEach(function(doc){
@@ -89,7 +92,7 @@ Template.dashboard.helpers({
   },
 
   alert_count_month() {
-    const components = Components.find({owner: Meteor.userId()}, {componentName:1,  _id:0});
+    const components = Components.find({}, {componentName:1,  _id:0});
     const componentNames = [];
 
     components.forEach(function(doc){
@@ -110,14 +113,14 @@ Template.dashboard.helpers({
   },
 
   interfaceName(componentName) {
-    const component = Components.findOne({owner: Meteor.userId(), componentName: componentName}, {interfaceOwner:1});
-    const interface = Interfaces.findOne({owner: Meteor.userId(), _id: component.interfaceOwner}, {interfaceName:1});
+    const component = Components.findOne({componentName: componentName}, {interfaceOwner:1});
+    const interface = Interfaces.findOne({_id: component.interfaceOwner}, {interfaceName:1});
 
     return interface.interfaceName;
   },
 
   componentType(componentName){
-    const component = Components.findOne({owner: Meteor.userId(), componentName: componentName}, {componentType:1});
+    const component = Components.findOne({componentName: componentName}, {componentType:1});
 
     return component.componentType;
   }
