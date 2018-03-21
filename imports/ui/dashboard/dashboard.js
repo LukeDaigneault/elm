@@ -18,26 +18,26 @@ Template.body.onCreated(function bodyOnCreated() {
 Template.dashboard.helpers({
 
   alerts() {
-    const components = Components.find({}, {componentName:1,  _id:0});
+    const components = Components.find({}, { componentName: 1, _id: 0 });
     const componentNames = [];
 
-    components.forEach(function(doc){
+    components.forEach(function(doc) {
       componentNames.push(doc.componentName);
     });
 
-    return Alerts.find({componentName: {$in: componentNames}}, {sort: {createdAt: -1}, limit: 30});
+    return Alerts.find({ componentName: { $in: componentNames } }, { sort: { createdAt: -1 }, limit: 30 });
   },
 
   alert_count_hour() {
-    const components = Components.find({}, {componentName:1,  _id:0});
+    const components = Components.find({}, { componentName: 1, _id: 0 });
     const componentNames = [];
 
-    components.forEach(function(doc){
+    components.forEach(function(doc) {
       componentNames.push(doc.componentName);
     });
 
     const start = new Date();
-    start.setHours(start.getHours()-1);
+    start.setHours(start.getHours() - 1);
 
     return Alerts.find({
       componentName: {
@@ -50,15 +50,15 @@ Template.dashboard.helpers({
   },
 
   alert_count_today() {
-    const components = Components.find({}, {componentName:1,  _id:0});
+    const components = Components.find({}, { componentName: 1, _id: 0 });
     const componentNames = [];
 
-    components.forEach(function(doc){
+    components.forEach(function(doc) {
       componentNames.push(doc.componentName);
     });
 
     const start = new Date();
-    start.setDate(start.getDate()-1);
+    start.setDate(start.getDate() - 1);
 
     return Alerts.find({
       componentName: {
@@ -71,15 +71,15 @@ Template.dashboard.helpers({
   },
 
   alert_count_week() {
-    const components = Components.find({}, {componentName:1,  _id:0});
+    const components = Components.find({}, { componentName: 1, _id: 0 });
     const componentNames = [];
 
-    components.forEach(function(doc){
+    components.forEach(function(doc) {
       componentNames.push(doc.componentName);
     });
 
     const start = new Date();
-    start.setDate(start.getDate()-7);
+    start.setDate(start.getDate() - 7);
 
     return Alerts.find({
       componentName: {
@@ -92,15 +92,15 @@ Template.dashboard.helpers({
   },
 
   alert_count_month() {
-    const components = Components.find({}, {componentName:1,  _id:0});
+    const components = Components.find({}, { componentName: 1, _id: 0 });
     const componentNames = [];
 
-    components.forEach(function(doc){
+    components.forEach(function(doc) {
       componentNames.push(doc.componentName);
     });
 
     const start = new Date();
-    start.setMonth(start.getMonth()-1);
+    start.setMonth(start.getMonth() - 1);
 
     return Alerts.find({
       componentName: {
@@ -113,14 +113,14 @@ Template.dashboard.helpers({
   },
 
   interfaceName(componentName) {
-    const component = Components.findOne({componentName: componentName}, {interfaceOwner:1});
-    const interface = Interfaces.findOne({_id: component.interfaceOwner}, {interfaceName:1});
+    const component = Components.findOne({ componentName: componentName }, { interfaceOwner: 1 });
+    const interface = Interfaces.findOne({ _id: component.interfaceOwner }, { interfaceName: 1 });
 
     return interface.interfaceName;
   },
 
-  componentType(componentName){
-    const component = Components.findOne({componentName: componentName}, {componentType:1});
+  componentType(componentName) {
+    const component = Components.findOne({ componentName: componentName }, { componentType: 1 });
 
     return component.componentType;
   }
@@ -128,7 +128,7 @@ Template.dashboard.helpers({
 });
 
 Template.dashboard.events({
-  'click .errorLookup'(event) {
+  'click .errorLookup' (event) {
     // Prevent default browser form submit
     event.preventDefault();
 

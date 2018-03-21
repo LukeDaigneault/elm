@@ -10,27 +10,27 @@ Template.body.onCreated(function bodyOnCreated() {
   Meteor.subscribe('interfaces');
 });
 
-Template.manageInterfaces.onDestroyed(function () {
+Template.manageInterfaces.onDestroyed(function() {
   Session.set("selectedInterface", "");
 });
 
 Template.manageInterfaces.helpers({
   'interfaces': function() {
 
-    return Interfaces.find({owner: Meteor.userId()}, {sort: {interfaceName: 1} });
+    return Interfaces.find({ owner: Meteor.userId() }, { sort: { interfaceName: 1 } });
   },
   'selectedInterface': function() {
-    if (Session.get("selectedInterface") != ''){
-    return Interfaces.findOne({owner: Meteor.userId(), _id: Session.get("selectedInterface") });
-  }else{
-    return null;
-  }
+    if (Session.get("selectedInterface") != '') {
+      return Interfaces.findOne({ owner: Meteor.userId(), _id: Session.get("selectedInterface") });
+    } else {
+      return null;
+    }
   },
 
 });
 
 Template.manageInterfaces.events({
-  'submit .save-interface'(event) {
+  'submit .save-interface' (event) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -45,22 +45,22 @@ Template.manageInterfaces.events({
     const facebook = target.facebook.checked;
     const sms = target.sms.checked;
 
-    if (Session.get("selectedInterface") == "" || Session.get("selectedInterface") == null){
-    Meteor.call('interfaces.insert', {
-      interfaceName: interfaceName,
-      hourWarn: hourWarn,
-      dayWarn: dayWarn,
-      weekWarn: weekWarn,
-      monthWarn: monthWarn,
-      email: email,
-      facebook: facebook,
-      sms: sms,
-      createdAt: new Date(), // current time
-      owner: Meteor.userId(),
-    });
-  }else {
-      Meteor.call('interfaces.update',
-        {_id: Session.get("selectedInterface"),
+    if (Session.get("selectedInterface") == "" || Session.get("selectedInterface") == null) {
+      Meteor.call('interfaces.insert', {
+        interfaceName: interfaceName,
+        hourWarn: hourWarn,
+        dayWarn: dayWarn,
+        weekWarn: weekWarn,
+        monthWarn: monthWarn,
+        email: email,
+        facebook: facebook,
+        sms: sms,
+        createdAt: new Date(), // current time
+        owner: Meteor.userId(),
+      });
+    } else {
+      Meteor.call('interfaces.update', {
+        _id: Session.get("selectedInterface"),
         interfaceName: interfaceName,
         hourWarn: hourWarn,
         dayWarn: dayWarn,
@@ -70,8 +70,7 @@ Template.manageInterfaces.events({
         facebook: facebook,
         sms: sms,
         updatedAt: new Date(), // current time
-      }
-      );
+      });
     }
 
 
@@ -87,13 +86,13 @@ Template.manageInterfaces.events({
     Session.set("selectedInterface", "");
 
   },
-  'click .delete-interface'() {
+  'click .delete-interface' () {
     event.preventDefault();
     Meteor.call('interfaces.remove', Session.get('selectedInterface'));
     Session.set('selectedInterface', '');
 
   },
-  'click .view-component'(e) {
+  'click .view-component' (e) {
     e.preventDefault();
 
     Modal.show('componentModal');
