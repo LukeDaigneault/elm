@@ -5,6 +5,7 @@ import { Interfaces } from '../../api/interfaces.js';
 import { Components } from '../../api/components.js';
 import './dashboardModal.js';
 import './dashboardChart.js';
+import './dashboardPieChart.js';
 
 
 import './dashboard.html';
