@@ -6,6 +6,7 @@ import './dashboardChart.html';
 
 function buildDataSeries(datalabels, datavalues) {
   console.log('inside buildDataSeries');
+
   const now = new Date();
 
   const lookupStartDate = new Date();
@@ -18,7 +19,6 @@ function buildDataSeries(datalabels, datavalues) {
   //for (i = 6; i >= 0; i--) {
   while (lookupStartDate < now) {
     datalabels.push(moment(lookupStartDate).format('ddd Do MMM'));
-
     datavalues.push(
       Alerts.find({
         //        componentName: {
@@ -41,6 +41,10 @@ Template.dashboardChart.onRendered(function chartOnRendered() {
   this.datalabels = [];
   this.datavalues = [];
 
+  const color = "rgba(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255);
+  const borderColor = color + ",1)"
+  const backgroundColor = color + ",0.3)"
+
   const ctx = document.getElementById("dashboardChart");
   const myChart = new Chart(ctx, {
     type: 'line',
@@ -49,9 +53,9 @@ Template.dashboardChart.onRendered(function chartOnRendered() {
       datasets: [{
         label: 'Alerts',
         data: this.datavalues,
-        fill: false,
-        borderColor: 'rgba(255,99,132,1)',
-        backgroundColor: 'rgba(255,99,132,1)',
+        fill: true,
+        borderColor: borderColor,
+        backgroundColor: backgroundColor,
         borderWidth: 1
       }]
     },
@@ -123,6 +127,7 @@ Template.dashboardChart.onRendered(function chartOnRendered() {
       while (this.datavalues.length > 0) {
         this.datavalues.pop();
       }
+
 
       buildDataSeries(this.datalabels, this.datavalues);
 
