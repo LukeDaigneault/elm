@@ -1,11 +1,18 @@
 import { Template } from 'meteor/templating';
 import { Chart } from 'chart.js/src/chart.js';
 import { Alerts } from '../../api/alerts.js';
-//import { Components} from '../../api/components.js';
+import { Components } from '../../api/components.js';
 import './dashboardPieChart.html';
 
 function buildDataSeries(datalabels, datavalues, labelcolors) {
   console.log('inside buildDataSeries');
+
+  const components = Components.find({}, { componentName: 1, _id: 0 });
+  const componentNames = [];
+
+  components.forEach(function(doc) {
+    componentNames.push(doc.componentName);
+  });
 
   var dynamicColors = function() {
     var r = Math.floor(Math.random() * 255);
@@ -14,7 +21,13 @@ function buildDataSeries(datalabels, datavalues, labelcolors) {
     return "rgb(" + r + "," + g + "," + b + ")";
   };
 
-  const componentNames = _.uniq(Alerts.find({}, {
+  const alertComponentNames = _.uniq(
+    Alerts.find({
+    componentName: {
+      $in: componentNames
+    },
+
+  }, {
     sort: { componentName: 1 },
     fields: { componentName: true }
   }).fetch().map(function(x) {
@@ -22,8 +35,8 @@ function buildDataSeries(datalabels, datavalues, labelcolors) {
   }), true);
 
 
-  for (var i in componentNames) {
-    datalabels.push(componentNames[i]);
+  for (var i in alertComponentNames) {
+    datalabels.push(alertComponentNames[i]);
     labelcolors.push(dynamicColors());
     datavalues.push(
       Alerts.find({
@@ -101,11 +114,3 @@ Template.dashboardPieChart.onRendered(function chartOnRendered() {
   });
 
 });
-
-
-//const components = Components.find({}, {componentName:1,  _id:0});
-//const componentNames = [];
-
-//components.forEach(function(doc){
-//  componentNames.push(doc.componentName);
-//});

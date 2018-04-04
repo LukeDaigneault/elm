@@ -1,11 +1,18 @@
 import { Template } from 'meteor/templating';
 import { Chart } from 'chart.js/src/chart.js';
 import { Alerts } from '../../api/alerts.js';
-//import { Components} from '../../api/components.js';
+import { Components } from '../../api/components.js';
 import './dashboardChart.html';
 
 function buildDataSeries(datalabels, datavalues) {
   console.log('inside buildDataSeries');
+
+  const components = Components.find({}, { componentName: 1, _id: 0 });
+  const componentNames = [];
+
+  components.forEach(function(doc) {
+    componentNames.push(doc.componentName);
+  });
 
   const now = new Date();
 
@@ -16,14 +23,14 @@ function buildDataSeries(datalabels, datavalues) {
   const lookupEndDate = new Date();
   lookupEndDate.setMonth(lookupEndDate.getMonth() - 1);
   lookupEndDate.setHours(24, 0, 0, 0);
-  //for (i = 6; i >= 0; i--) {
+
   while (lookupStartDate < now) {
     datalabels.push(moment(lookupStartDate).format('ddd Do MMM'));
     datavalues.push(
       Alerts.find({
-        //        componentName: {
-        //        $in: componentNames
-        //        },
+        componentName: {
+          $in: componentNames
+        },
         createdAt: {
           $gte: lookupStartDate,
           $lte: lookupEndDate,
@@ -135,11 +142,3 @@ Template.dashboardChart.onRendered(function chartOnRendered() {
     });
   });
 });
-
-
-//const components = Components.find({}, {componentName:1,  _id:0});
-//const componentNames = [];
-
-//components.forEach(function(doc){
-//  componentNames.push(doc.componentName);
-//});
