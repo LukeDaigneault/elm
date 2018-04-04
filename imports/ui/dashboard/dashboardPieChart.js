@@ -5,7 +5,7 @@ import { Components } from '../../api/components.js';
 import './dashboardPieChart.html';
 
 function buildDataSeries(datalabels, datavalues, labelcolors) {
-  console.log('inside buildDataSeries');
+//  console.log('inside buildDataSeries');
 
   const components = Components.find({}, { componentName: 1, _id: 0 });
   const componentNames = [];
@@ -49,7 +49,7 @@ function buildDataSeries(datalabels, datavalues, labelcolors) {
 }
 
 Template.dashboardPieChart.onRendered(function chartOnRendered() {
-  console.log('inside onRendered');
+//  console.log('inside onRendered');
   this.datalabels = [];
   this.datavalues = [];
   this.labelcolors = [];
@@ -74,7 +74,7 @@ Template.dashboardPieChart.onRendered(function chartOnRendered() {
 
   this.subscribe('alerts', () => { // removes the need for an onReady() test
     // code to populate this.data array (find().fetch()) and render initial chart
-    console.log('inside subscribe');
+//    console.log('inside subscribe');
     buildDataSeries(this.datalabels, this.datavalues, this.labelcolors);
 
     myChart.update();
@@ -82,7 +82,7 @@ Template.dashboardPieChart.onRendered(function chartOnRendered() {
     this.autorun(() => {
       // template autoruns will be cleaned up for me
       // code to update this.data (find().fetch()) from the collection and re-draw series (this is a lightweight operation).
-      console.log('inside AutoRun');
+  //    console.log('inside AutoRun');
 
       const oneMonthOfAlerts = new Date();
       oneMonthOfAlerts.setMonth(oneMonthOfAlerts.getMonth() - 1);
